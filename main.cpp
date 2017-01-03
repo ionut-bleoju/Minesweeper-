@@ -11,18 +11,20 @@ void Traseaza(string icons)
 	cout<<endl<< "  |";
 	for (int i=0;i<dim[0];i++) //Prima Linie
 	{
-			cout << "---";
+			cout << "----";
 	}
 
 	cout << "|" << endl << "  |";
 	for (int i=0;i<dim[0];i++)
-	{if(i+1>10)
+	{if(i+2>10)
 		cout << "|" << i+1 << "|";
+    else
+        cout << "| " << i+1 << "|";
 	}
 	cout << "X" << endl;
 	for (int i=0;i<dim[1];i++)
 	{
-		if ((i+1) % 10 == 0)
+		if ((i+1)>=10)
 		{
 			cout << (i+1)/10 << (i+1) % 10 << "|";
 		}
@@ -32,14 +34,14 @@ void Traseaza(string icons)
 		}
 		for (int j=0;j<dim[0];j++)
 		{
-			cout << "[" << icons.at(tabel[j][i]) << "]";
+			cout << "[ " << icons.at(0) << "]";
 		}
 		cout << "|" << endl;
 	}
 	cout << " Y|";
 	for (int i=0;i<dim[0];i++)
 	{
-		cout << "---";
+		cout << "----";
 	}
 	cout << "|" << endl;
 }
