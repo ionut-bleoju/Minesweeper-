@@ -84,6 +84,41 @@ bool testactiune()
 	return OK;
 }
 
+void extinde(int X, int Y)
+{
+
+	if (tabel[X][Y] == 9 || tabel[X][Y] == 11)
+	{
+		tabel[X][Y] = -1;
+		do
+		{
+			if (tabel[X][Y] == -1)
+			{
+				tabel[X][Y] = vecini(X,Y);
+				if (tabel[X][Y] == 0)
+				{
+					for (int i=-1+(X==0);i<=1-(X==dim[0]-1);i++)
+					{
+						for (int j=-1+(Y==0);j<=1-(Y==dim[1]-1);j++)
+						{
+							if (tabel[X+i][Y+j] == 9)
+							{
+								tabel[X+i][Y+j] = -1;
+							}
+						}
+					}
+					X -= (X>0)+(X>-1);
+					Y -= (Y>0);
+					cout << endl << "--X = " << X << "  Y = " << Y;
+				}
+			}
+			Y += (X==dim[0]-1);
+			X = X*(X!=dim[0]-1) - (X==dim[0]-1);
+			X += (X<dim[0]-1);
+		} while (Y!=dim[1]);
+		cout << endl << "X = " << X << "  Y = " << Y;
+	}
+}
 void Investigheaza()
 {
 	cout << endl << "Inspecteaza...";
