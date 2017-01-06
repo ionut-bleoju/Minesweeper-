@@ -1,4 +1,8 @@
 #include <iostream>
+#include <string>
+#include <cmath>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 //variabile globale
 int dim[2];//Dimensiune tabela ;
@@ -48,8 +52,27 @@ void Traseaza(string icons)
 	}
 	cout << "|" << endl;
 }
+bool sfarsit()
+{
+	for (int i=0;i<dim[0];i++)
+	{
+		for (int j=0;j<dim[1];j++)
+		{
+			if (tabel[i][j] == 9 || tabel[i][j] == 11)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
 
-
+void Marcheaza()
+{
+	cout << endl << "Marcheaza...";
+	int *tile = &tabel[actiune[0]-1][actiune[1]-1];
+	*tile += 2*(*tile == 9 || *tile == 10) - 2*(*tile == 11 || *tile == 12);
+}
 
 bool testactiune()
 {
@@ -119,6 +142,7 @@ void extinde(int X, int Y)
 		cout << endl << "X = " << X << "  Y = " << Y;
 	}
 }
+
 void Investigheaza()
 {
 	cout << endl << "Inspecteaza...";
@@ -135,7 +159,8 @@ void Investigheaza()
 }
 
 void Actiune()
-	{actiune[0] = actiune[1] = actiune[2] = 0;
+{
+    actiune[0] = actiune[1] = actiune[2] = 0;
 	cout
 	<< endl << "[" << icons.at(9) << "] - necunoscut   [" << icons.at(1) << "-" << icons.at(8) << "] - # mine inprejur"
 	<< endl << "[" << icons.at(0) << "] - 0 mine  [" << icons.at(10) << "] - mine  [" << icons.at(11) << "] - Marcat"
@@ -155,6 +180,22 @@ void Actiune()
 	{
 		Marcheaza();//De inplementat
 	}
+}
+
+int vecini(int X, int Y)
+{
+	int nrMine = 0;
+	for (int i=-1+(X==0);i<=1-(X==dim[0]-1);i++)
+	{
+		for (int j=-1+(Y==0);j<=1-(Y==dim[1]-1);j++)
+		{
+			if (tabel[X+i][Y+j] == 10 || tabel[X+i][Y+j] == 12)
+			{
+				nrMine++;
+			}
+		}
+	}
+	return nrMine;
 }
 
 int main()
