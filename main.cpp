@@ -6,7 +6,7 @@
 using namespace std;
 //variabile globale
 int dim[2];//Dimensiune tabela ;
-int tabel[15][15];
+int **tabel;
 int actiune[3];
 int mine = 0;
 bool  test = true;
@@ -41,7 +41,7 @@ void Traseaza(string icons)
 		}
 		for (int j=0;j<dim[0];j++)
 		{
-			cout << "[ " << icons.at(0) << "]";
+			cout << "[ " << icons.at(tabel[i][j]) << "]";
 		}
 		cout << "|" << endl;
 	}
@@ -105,6 +105,22 @@ bool testactiune()
 		cout << endl << "Eroare:Valoarea introdusa este inafara domeniului";
 	}
 	return OK;
+}
+
+int vecini(int X, int Y)
+{
+	int nrMine = 0;
+	for (int i=-1+(X==0);i<=1-(X==dim[0]-1);i++)
+	{
+		for (int j=-1+(Y==0);j<=1-(Y==dim[1]-1);j++)
+		{
+			if (tabel[X+i][Y+j] == 10 || tabel[X+i][Y+j] == 12)
+			{
+				nrMine++;
+			}
+		}
+	}
+	return nrMine;
 }
 
 void extinde(int X, int Y)
@@ -182,21 +198,7 @@ void Actiune()
 	}
 }
 
-int vecini(int X, int Y)
-{
-	int nrMine = 0;
-	for (int i=-1+(X==0);i<=1-(X==dim[0]-1);i++)
-	{
-		for (int j=-1+(Y==0);j<=1-(Y==dim[1]-1);j++)
-		{
-			if (tabel[X+i][Y+j] == 10 || tabel[X+i][Y+j] == 12)
-			{
-				nrMine++;
-			}
-		}
-	}
-	return nrMine;
-}
+
 
 int main()
 {
