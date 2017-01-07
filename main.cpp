@@ -246,7 +246,7 @@ int main()
         }
 
         do
-        {
+        {Traseaza(icons);
 		Actiune();
 		runde++;
 		if (test)
