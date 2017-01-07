@@ -215,5 +215,31 @@ int main()
 	{
 		tabel[i] = new int[dim[1]];
 	}
+	do
+	{
+		bin = 0;
+		cout << endl << endl << "Probabilitatea de aparitiea a unei mine  ";
+		cin >> prob;
+		if (prob <= dim[0]*dim[1] || prob >= 0)
+		{
+		cout << endl << "Vor fi aproximativ " << prob*dim[0]*dim[1]<<" mine "
+		<< endl << endl << "OK?" << endl << "1 - Da, 2 - Nu" << endl << "= ";
+		cin >> bin;
+		}
+	} while (bin!=1);
+     mine = 0;
+        for (int i=0;i<dim[0];i++)
+        {for (int j=0;j<dim[1];j++)
+            {
+            random =(double) rand()/RAND_MAX;
+
+			tabel[i][j] = (random<prob)+9;
+
+			if (tabel[i][j]==10) {
+				mine++;
+			}
+            }
+        }
+
     return 0;
 }
