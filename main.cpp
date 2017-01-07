@@ -8,9 +8,11 @@ using namespace std;
 int dim[2];//Dimensiune tabela ;
 int **tabel;
 int actiune[3];
+int runde = 0;
 int mine = 0;
 bool  test = true;
 const string icons = " 12345678++%%*";
+const string icons_end = " 12345678+M+M#";
 #define limita(X,NUM) (NUM<=dim[X] && NUM>0)
 
 void Traseaza(string icons)
@@ -227,6 +229,7 @@ int main()
 		cin >> bin;
 		}
 	} while (bin!=1);
+
      mine = 0;
         for (int i=0;i<dim[0];i++)
         {for (int j=0;j<dim[1];j++)
@@ -235,11 +238,44 @@ int main()
 
 			tabel[i][j] = (random<prob)+9;
 
-			if (tabel[i][j]==10) {
+			if (tabel[i][j]==10)
+            {
 				mine++;
 			}
             }
         }
+
+        do
+        {
+		Actiune();
+		runde++;
+		if (test)
+		{
+			cout << endl << endl << "Runda " << runde+1 << endl;
+		}
+        } while (test && !sfarsit());
+
+	if (test)
+	{
+		Traseaza(icons_end);
+		cout << endl
+		<< endl << "Ai castigat!!";
+	}
+	else
+	{
+		Traseaza(icons_end);
+		cout << endl
+		<< endl << "--------"
+		<< endl << "-KABOOM-"
+		<< endl << "--------"
+		<< endl << endl << "Game Over...";
+	}
+	cout
+	<< endl << "Ai jucat " << runde << " runde"
+	<< endl << "Au fost " << mine << " mine din " << dim[0]*dim[1] << " spatii"
+	<< endl << "Numarul approximativ de mine a fost" << prob*dim[0]*dim[1];
+	cout << endl;
+	cin >> random;
 
     return 0;
 }
