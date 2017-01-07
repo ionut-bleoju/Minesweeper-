@@ -201,6 +201,19 @@ void Actiune()
 
 
 int main()
-{
+{   srand(time(0)); //RNG
+	int bin;
+	double prob;
+	double random;
+	cout << endl << "Consola Minesweeper"
+	<< endl << "Latimea tabelei (X) = ";
+	cin >> dim[0];
+	cout << endl << "Inaltimea tabelei (Y) = ";
+	cin >> dim[1];
+	tabel = new int * [dim[0]];
+	for(int i=0;i<dim[0];i++)
+	{
+		tabel[i] = new int[dim[1]];
+	}
     return 0;
 }
