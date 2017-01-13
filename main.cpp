@@ -189,14 +189,14 @@ void Actiune()
 		cout << endl << endl << "Actiune = ";
 		cin >> actiune[0] >> actiune[1] >> actiune[2];
 		cout << endl << "Valideaza...";
-	} while (!testactiune());//De inplementat
+	} while (!testactiune());
 	if (actiune[2] == 1)
 	{
-		Investigheaza();//De inplementat
+		Investigheaza();
 	}
 	else
 	{
-		Marcheaza();//De inplementat
+		Marcheaza();
 	}
 }
 
@@ -265,10 +265,9 @@ int main()
 	{
 		Traseaza(icons_end);
 		cout << endl
-		<< endl << "--------"
-		<< endl << "-KABOOM-"
-		<< endl << "--------"
-		<< endl << endl << "Game Over...";
+		<< endl << "-----------"
+		<< endl << "-GAME OVER-"
+		<< endl << "-----------";
 	}
 	cout
 	<< endl << "Ai jucat " << runde << " runde"
